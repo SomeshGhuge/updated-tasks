@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Add Student</title>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+  <div th:replace="fragments/header4 :: header4"></div>
+
+  <div class="container-fluid">
+    <h2 class="text-center">[[${pageTitle}]]</h2>
+
+  <div th:if="${sms != null}" class="alert alert-success alert-dismissible fade show text-center message"
+      role="alert">
+      [[${sms}]]
+      <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="my-3">
+      <form th:action="@{/teacher/savestudents}" method="post" enctype="multipart/form-data" th:object="${student}"
+        style="max-width: 550px; margin: 0 auto">
+        
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="p-3">
+         
+      
+           <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">Hallticketnumber</label>
+            <div class="col-sm-9">
+              <input type="text"  th:field="*{hallticketnumber}" 
+                class="form-control" name="hallticketnumber" placeholder="Enter Hallticket Number" />
+            </div>
+          </div>
+          
+            <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="city">Name</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{name}"  class="form-control" placeholder="Enter Name"
+                id="name" />
+                   
+            </div>
+          </div>
+          
+            <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="city">Email</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{email}"  class="form-control"placeholder="Enter Email"
+                id="email" />
+            </div>
+          </div>
+          
+           <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">BirthDateYear</label>
+            <div class="col-sm-9">
+              <input type="text" name="birthdateyear" field="*{birthdateyear}" class="form-control"
+              placeholder="Enter Date Of Birth"/>
+            </div>
+          </div>
+
+          
+           <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">std</label>
+            <div class="col-sm-9">
+              <input type="text"  th:field="*{std}" placeholder="Enter Standard"
+                class="form-control" name="std" />
+            </div>
+          </div>
+          
+         
+          
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">English</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{english}" placeholder="Enter English Subject Mark"
+                class="form-control" name="english" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">marathi</label>
+            <div class="col-sm-9">
+              <input type="text"th:field="*{marathi}" placeholder="Enter Marathi Subject Mark"
+                class="form-control" name="marathi" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">Math</label>
+            <div class="col-sm-9">
+              <input type="text"th:field="*{math}" placeholder="Enter Math Subject Mark"
+                class="form-control" name="math" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">Science</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{science}" placeholder="Enter Science Subject Mark"
+                class="form-control" name="science" />
+            </div>
+          </div>
+           <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">History</label>
+            <div class="col-sm-9">
+              <input type="text"  th:field="*{history}"placeholder="Enter History Subject Mark"
+                class="form-control" name="history" />
+            </div>
+          </div>
+           <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="marks">TotatlMarks</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{totatlmarks}"placeholder="Enter Total Marks"
+                class="form-control" name="totatlmarks" />
+            </div>
+          </div>
+           
+            <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="city">Result</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{result}" minlength="2" class="form-control"placeholder="Enter Result"
+                name="result" />
+            </div>
+          </div>
+          
+          
+          </div>
+          
+          <div class="text-center">
+            <input type="submit" value="Save" class="btn btn-outline-primary btn-sm mr-2" />
+            <input type="button" value="Cancel" id="btnCancel" class="btn btn-outline-secondary btn-sm" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div th:replace="fragments/footer :: footer"></div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#btnCancel").on("click", function () {
+        window.location = "[[@{/teacher/allstudents}]]";
+      });
+    });
+  </script>
+
+</body>
+
+</html>

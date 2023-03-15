@@ -1,0 +1,36 @@
+
+<header th:fragment="header4">
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand">
+      Edit Students Result
+    </a>
+   
+    <div class="collapse navbar-collapse" id="topNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="btn btn-outline-warning" th:href="@{/teacher/allstudents}">All Students</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-warning" th:href="@{/teacher/addstudents}">Add New Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-warning" th:href="@{/teacher/addteacher}">Add New Teacher</a>
+        </li>
+         <li class="nav-item">
+          <a class="btn btn-outline-warning" th:href="@{/teacher/allteachers}">Show Teachers List</a>
+        </li>
+       
+      </ul>
+    </div>
+    
+     <li class="nav-item">
+     <a  class="btn btn-primary"<h5>Welcome,<span th:text="${email}"</span></span> </h5> </a>
+    </li>
+    <li class="nav-item">
+          <a class="btn btn-outline-warning" th:href="@{/home/teacherlogout}">Teacher Logout</a>
+    </li>
+    
+  </nav>
+
+
+</header>

@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title> Make Changes In Result</title>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+ 
+</head>
+
+<body>
+  <div th:replace="fragments/header4 :: header4">  </div>
+
+  <div class="container-fluid" style="max-width: 1300px; margin:left 0 px;">
+    <h2 class="text-center">Edit Student Result Details</h2>
+    
+
+    <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
+      role="alert">
+      [[${message}]]
+      <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+   
+
+    <div class="table">
+      <table class="table table-hover table-responsive-xl">
+        <thead class="thead-light">
+          <tr>
+                  
+	   
+            <th scope="col">Id</th>
+            <th scope="col">Hallticketnumber</th>
+            <th scope="col">Name</th>
+            <th scope="col">Std</th>
+            <th scope="col">Email</th>
+            <th scope="col">BirthDateYear</th>
+            <th scope="col">English</th>
+            <th scope="col">Marathi</th>
+            <th scope="col">Math</th>
+            <th scope="col">Science</th>
+            <th scope="col">History</th>
+            <th scope="col">TotatlMarks</th>
+            <th scope="col">Result</th>
+            <th scope="col">Action</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="student : ${studentList}">
+            <th scope="row">[[${student.id}]]</th>
+            <td>[[${student.hallticketnumber}]]</td>
+            <td>[[${student.name}]]</td>
+            <td>[[${student.std}]]</td>
+            <td>[[${student.email}]]</td>
+            <td>[[${student.birthdateyear}]]</td>
+            <td>[[${student.english}]]</td>
+            <td>[[${student.marathi}]]</td>
+            <td>[[${student.math}]]</td>
+            <td>[[${student.science}]]</td>
+            <td>[[${student.history}]]</td>
+            <td>[[${student.totatlmarks}]]</td>
+            <td>[[${student.result}]]</td>
+            <td>
+              <a th:href="@{'/teacher/' + ${student.id}}" title="Edit this Student"
+                class="fa-regular fa-pen-to-square icon-dark"></a>
+              &nbsp;
+              <a th:href="@{'/teacher/deletestudent/' + ${student.id}}" th:studentName="${student.name}" id="btnDelete"
+                title="Delete this Student" class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+  </div>
+
+  <div class="modal fade text-center" id="confirmModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <span id="confirmText"></span>
+        </div>
+
+        <div class="modal-footer">
+          <a type="button" id="yesBtn" class="btn btn-outline-danger">Yes</a>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div th:replace="fragments/footer3 :: footer3"></div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".btn-delete").on("click", function (e) {
+        e.preventDefault();
+        link = $(this);
+
+        studentName = link.attr("studentName");
+        $("#yesBtn").attr("href", link.attr("href"));
+        $("#confirmText").html("Do you want to delete the Student \<strong\>" + studentName + "\<\/strong\>?");
+        $("#confirmModal").modal();
+      });
+
+      $("#btnClear").on("click", function (e) {
+        e.preventDefault();
+        $("#keyword").text("");
+        window.location = "[[@{/teachers/allstudents}]]";
+      });
+    });
+  </script>
+
+</body>
+
+</html>
