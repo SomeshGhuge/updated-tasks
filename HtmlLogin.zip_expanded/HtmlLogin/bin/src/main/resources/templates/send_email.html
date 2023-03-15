@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Send Email - CodeJava</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>Send E-Mail to User</h1>
+        </div>
+        <form th:action="@{/mail_sent}" th:object="${user}" method="post" 
+             style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class="form-group row m-3">
+                <label class="col-4 col-form-label">Senders's mail: </label>
+                <div class="col-8">
+                    <input type="email" class="form-control" value="yourmail" required readonly/>
+                </div>
+            </div>
+        
+            <div class="form-group row m-3">
+                <label class="col-4 col-form-label">Receiver's mail: </label>
+                <div class="col-8">
+                    <input type="email"  class="form-control" th:value="${userIdEmail}" required name="remail"/>
+                </div>
+            </div>
+                          
+            <div class="form-group row m-3">
+                <label class="col-4 col-form-label">Subject: </label>
+                <div class="col-8">
+                    <input type="text"  class="form-control" name="sub"/>
+                </div>
+            </div>
+             
+            <div class="form-group row m-3">
+                <label class="col-4 col-form-label">Body: </label>
+                <div class="col-8">
+                    <input type="text"  class="form-control"
+                            required minlength="1" name = "body"/>
+                </div>
+            </div>
+             
+            <div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
